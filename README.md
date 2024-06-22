@@ -102,18 +102,44 @@ Vamos entender melhor esse comando:
 ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/a41c1343-24e7-46f6-ae57-01d6465297ad)
 
 ## Apache Flume - Spool-to-logger
-Spool-to-logger é um componente do Apache Flume, um sistema de ingestão de dados distribuído e confiável, que tem como objetivo coletar, agregar e mover grandes volumes de dados de forma eficiente.
+Spool-to-logger é um componente do Apache Flume, um sistema de ingestão de dados distribuído e confiável, que tem como objetivo coletar, agregar e mover grandes volumes de dados de forma eficiente. <br>
 
-## Demostrativo Spool-to-logger
-Para executarmos esse demonstrativo, iremos seguir alguns passos inicialmente. <br>
-
+### *Passo 1: Arquivo de Configuração*
 1 - Abra um novo terminal. <br>
 2 - Navegue até a pasta conf do apache-flume. ```cd apache-flume-1.9.0-bin/conf``` <br>
 3 - Crie arquivo cujo o nome será ```test-spool-to-logger.properties``` <br>
 4 - Dentro desse novo arquivo, descreva as seguintes configurações:
   ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/14bc9741-2295-40d4-bc4d-92b46503d5e1)
 
-  
+### *Passo 2: Criação de arquivos para Teste*
+Em alguma qualquer pasta do seu ambiente de trabalho, crie 12 arquivos para utilizarmos como teste. <br>
+Nesses arquivos faça a inserção de alguns dados aleatórios.
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/dc284fda-2ea0-4e04-aeaa-b62fe0ef703b)
+
+### *Passo 3: Inicialização do Agente*
+Nessa etapa iremos fazer de um Agente do Flume. <br>
+Para isso executaremos o comando abaixo:
+```shell
+flume-ng agent --conf-file test-spool-to-logger.properties --name agent1 -Dflume.root.logger=WARN,console
+```
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/4f23f1fd-f680-4dc3-a9d2-414e34d90c1f)
+
+
+### *Passo 4: Executando Teste*
+Para executarmos um teste, e ter a certeza que esse processo todo deu certo, vamos seguir alguns passos: <br>
+1 - Abra a pasta onde criou os arquivos para teste. <br>
+2 - Navegue até a pasta que definimos como "source" (Passo 1/ Item 4) ```cd apache-flume-1.9.0-bin/spool-test``` <br>
+3 - Comece a mover os arquivos de teste, para o diretório source. <br>
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/08ab509e-f8b4-4578-9f5e-e53d83b62e0d)
+> Note que conforme vamos arrastando os arquivos, e eles vão sendo concluídos, vão obtendo uma extensão .COMPLETED
+
+
+
+
+
 
 
 
