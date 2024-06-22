@@ -65,17 +65,55 @@ Vamos entender melhor esse comando:
 ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/53ac29f8-225f-4c74-a6e9-8c546d5f9d44)
 
 > Podemos Executar o comando abaixo para listarmos os tópicos existentes <br>
-> ```shell sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-topics.sh --list --zookeeper localhost:2181 ```
+> ```sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-topics.sh --list --zookeeper localhost:2181```
 
 ## Producer e Consumer
 
-### Confugurando Producer
-Um producer no Kafka é um componente que publica (envia) dados para tópicos no cluster Kafka, atuando como a fonte de dados para o sistema de mensagens.
+### 1 - Confugurando Producer
+Um producer no Kafka é um componente que publica (envia) dados para tópicos no cluster Kafka, atuando como a fonte de dados para o sistema de mensagens. <br>
 Para criarmos um Producer no tópico que criarmos, iremos executar o seguinte comando:
-```shell sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic aula1006```
+```shell 
+sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-console-producer.sh --broker-list localhost:9092 --topic aula1006
+```
 Vamos entender melhor esse comando:
 - **sudo**: Executa o comando com privilégios de superusuário (root). Isso é necessário se o Kafka precisar acessar arquivos ou portas que requerem permissões elevadas.
-- 
+  
+- **/home/puc/kafka_2.11-1.0.0/bin/kafka-console-producer.sh**: Este é o script de shell fornecido, para iniciar um produtor de console, que permite enviar mensagens para um tópico no Kafka. O script está localizado no diretório de instalação do Kafka (/home/puc/kafka_2.11-1.0.0/bin).
 
-### Configurando Consumer
-Um consumer no Kafka é um componente que lê (consome) dados de tópicos no cluster Kafka, processando ou utilizando esses dados conforme necessário.
+- **--broker-list localhost:9092**: Especifica a lista de brokers Kafka aos quais o produtor deve se conectar. localhost:9092 indica que o produtor deve se conectar ao broker Kafka que está sendo executado localmente na porta 9092
+
+- **--topic aula1006**: Especifica o nome do tópico para o qual o produtor enviará as mensagens. Neste caso, o nome do tópico é aula1006
+
+### 2 - Configurando Consumer
+Um consumer no Kafka é um componente que lê (consome) dados de tópicos no cluster Kafka, processando ou utilizando esses dados conforme necessário. <br>
+Para criarmos um Consumer no tópico que criarmos, iremos executar o seguinte comando:
+```shell
+sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic aula1006 --from-beginning 
+```
+Vamos entender melhor esse comando:
+- **sudo**: Executa o comando com privilégios de superusuário (root). Isso é necessário se o Kafka precisar acessar arquivos ou portas que requerem permissões elevadas.
+
+- **/home/puc/kafka_2.11-1.0.0/bin/kafka-console-consumer.sh**: Este é o script de shell fornecido, para iniciar um consumidor de console. Esse consumidor permite ler mensagens de um tópico específico no cluster Kafka. O script está localizado no diretório de instalação do Kafka em /home/puc/kafka_2.11-1.0.0/bin.
+
+- **--zookeeper localhost:2181**: Parâmetro que especifica a conexão com o servidor Zookeeper. Neste caso, localhost:2181 indica que o consumidor deve se conectar ao Zookeeper que está sendo executado localmente na porta 2181. No entanto, é importante notar que o uso direto do Zookeeper para gerenciar metadados do Kafka foi descontinuado em versões mais recentes, onde o parâmetro --bootstrap-server deve ser utilizado.
+
+- **--topic aula1006**: Especifica o nome do tópico para o qual o produtor enviará as mensagens. Neste caso, o nome do tópico é aula1006
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/a41c1343-24e7-46f6-ae57-01d6465297ad)
+
+## Apache Flume - Spool-to-logger
+Spool-to-logger é um componente do Apache Flume, um sistema de ingestão de dados distribuído e confiável, que tem como objetivo coletar, agregar e mover grandes volumes de dados de forma eficiente.
+
+## Demostrativo Spool-to-logger
+Para executarmos esse demonstrativo, iremos seguir alguns passos inicialmente. <br>
+
+1 - Abra um novo terminal. <br>
+2 - Navegue até a pasta conf do apache-flume. ```cd apache-flume-1.9.0-bin/conf``` <br>
+3 - Crie arquivo cujo o nome será ```test-spool-to-logger.properties``` <br>
+4 - Dentro desse novo arquivo, descreva as seguintes configurações:
+  ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/14bc9741-2295-40d4-bc4d-92b46503d5e1)
+
+  
+
+
+
