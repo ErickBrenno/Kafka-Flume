@@ -153,7 +153,7 @@ flume-ng agent --conf-file spool-to-kafka.properties --name agent2 -Dflume.root.
 ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/004e64d2-bfcd-499c-a50e-273e7a97467e)
 
 ### *Passo 2: Iniciando o Costumer Kafka*
-Nessa etapa, iremos iniciar o Custumer do tópico Kafka
+Nessa etapa, iremos iniciar o Custumer do tópico Kafka. <br>
 1 - Abra um novo terminal. <br>
 2 - Navegue até a pasta conf do apache-flume. ```cd apache-flume-1.9.0-bin/conf``` <br>
 3 - Execute o comando abaixo para iniciar o Costumer:
