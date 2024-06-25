@@ -101,7 +101,7 @@ Vamos entender melhor esse comando:
 
 ![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/a41c1343-24e7-46f6-ae57-01d6465297ad)
 
-## Apache Flume - Spool-to-logger
+## Spool-to-logger
 Spool-to-logger é um componente do Apache Flume, um sistema de ingestão de dados distribuído e confiável, que tem como objetivo coletar, agregar e mover grandes volumes de dados de forma eficiente. <br>
 
 ### *Passo 1: Arquivo de Configuração*
@@ -137,6 +137,35 @@ Para executarmos um teste, e ter a certeza que esse processo todo deu certo, vam
 > Note que conforme vamos arrastando os arquivos, e eles vão sendo concluídos, vão obtendo uma extensão .COMPLETED
 
 
+## Spool-to-Kafka
+Para esse exemplo, vamos utilizar um arquivo já predefinido nas configurações da nossa VirtualBox, ele se chama "spool-to-kafka.properties".<br>
+Para chegar até ele, navegue até a pasta ```/home/puc/apache-flume-1.8.0-bin/conf```
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/808f4e32-acd4-4fbd-bf43-eacf9f8bcd77)
+
+### *Passo 1: Iniciando o Agente*
+1 - Abra um novo terminal. <br>
+2 - Navegue até a pasta conf do apache-flume. ```cd apache-flume-1.9.0-bin/conf``` <br>
+3 - Execute o comando abaixo para iniciar o Agente:
+```shell 
+flume-ng agent --conf-file spool-to-kafka.properties --name agent2 -Dflume.root.logger=WARN,console
+```
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/004e64d2-bfcd-499c-a50e-273e7a97467e)
+
+### *Passo 2: Iniciando o Costumer Kafka*
+Nessa etapa, iremos iniciar o Custumer do tópico Kafka
+1 - Abra um novo terminal. <br>
+2 - Navegue até a pasta conf do apache-flume. ```cd apache-flume-1.9.0-bin/conf``` <br>
+3 - Execute o comando abaixo para iniciar o Costumer:
+```shell
+sudo /home/puc/kafka_2.11-1.0.0/bin/kafka-console-consumer.sh --zookeeper localhost:2181 --topic flume-topic
+```
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/99db24a5-9e47-4c42-b39f-ef56657991b4)
+
+### *Passo 3: Executando Teste*
+Conforme vamos incluido arquivos na nossa pasta, note que o Costumer, vai exibindo o conteúdo, e logo após isso, o arquivo fica com uma extensão .COMPLETED
+
+![image](https://github.com/ErickBrenno/Kafka-Flume/assets/83048005/d995e3bb-ea11-48fa-a70c-6ba88fbd588b)
 
 
 
